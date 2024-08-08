@@ -1,6 +1,21 @@
+:root {
+  --color-primary: #ffdd48;
+  --color-dark: #333333;
+  --color-secondary: #6c757d;
+  --color-light: #e0e0e0;
+  --shadow-light: rgba(0, 0, 0, 0.05);
+  --shadow-dark: rgba(0, 0, 0, 0.15);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
   font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
+  background: linear-gradient(to right, var(--color-primary), #f4f4f4);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -10,48 +25,113 @@ body {
 
 .container {
   display: flex;
-  flex-direction: column;
   justify-content: center;
-  background-color: white;
-  padding: 40px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  width: 70%;
-  max-width: 40%;
+  align-items: center;
+  width: 100%;
+  max-width: 80%;
+}
+
+.content-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 80%;
+}
+
+.content {
+  flex: 1;
   text-align: center;
+  box-shadow: 0 2px 4px var(--shadow-light);
+  padding: 20px;
+  border-radius: 8px;
+  background-color: white;
+  animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+#unique-image {
+  width: 30%;
+  margin-top: 3rem;
+  margin-left: 20px;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  box-shadow: 0 1px 2px var(--shadow-light);
 }
 
 h1 {
-  color: #333;
+  color: var(--color-dark);
+  margin-top: 20px;
+  animation: slideIn 0.5s ease-out;
+}
+
+@keyframes slideIn {
+  from { transform: translateY(-20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
 }
 
 textarea {
   width: 100%;
   height: 100px;
   margin: 10px 0;
-  padding: 10px;
-  border: 1px solid #ddd;
+  padding: 20px;
+  border: 1px solid var(--color-light);
   border-radius: 4px;
   resize: none;
+  box-shadow: 0 1px 2px var(--shadow-light);
+  transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
 }
 
-.buttons {
-  display: flex;
-  justify-content: space-between;
+textarea:focus {
+  box-shadow: 0 2px 4px var(--shadow-dark);
+  outline: none;
+  transform: scale(1.02);
 }
 
 button {
-  padding: 10px 10px;
+  padding: 10px 20px;
   border: none;
   border-radius: 40px;
-  background-color: #ffdd48;
   color: white;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s, box-shadow 0.3s, transform 0.3s;
+  box-shadow: 0 1px 2px var(--shadow-light);
 }
 
-button:hover {
-  background-color: #000000;
+#encrypt-btn {
+  background-color: var(--color-primary);
+  border: 1px solid var(--color-dark);
+}
+
+#encrypt-btn:hover {
+  background-color: #e0c757;
+  box-shadow: 0 2px 4px var(--shadow-dark);
+  transform: translateY(-2px);
+}
+
+#copy-btn {
+  background-color: var(--color-primary);
+  border: 1px solid var(--color-dark);
+}
+
+#copy-btn:hover {
+  background-color: #e0c757;
+  box-shadow: 0 2px 4px var(--shadow-dark);
+  transform: translateY(-2px);
+}
+
+#decrypt-btn {
+  background-color: var(--color-secondary);
+  border: 1px solid var(--color-dark);
+}
+
+#decrypt-btn:hover {
+  background-color: #5a6268;
+  box-shadow: 0 2px 4px var(--shadow-dark);
+  transform: translateY(-2px);
 }
 
 #output-text {
