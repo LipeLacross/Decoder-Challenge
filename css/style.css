@@ -3,8 +3,11 @@
   --color-dark: #333333;
   --color-secondary: #6c757d;
   --color-light: #e0e0e0;
+  --color-border: #000000;
   --shadow-light: rgba(0, 0, 0, 0.05);
   --shadow-dark: rgba(0, 0, 0, 0.15);
+  --footer-bg: #f8f9fa;
+  --footer-text: #6c757d;
 }
 
 * {
@@ -16,19 +19,59 @@
 body {
   font-family: Arial, sans-serif;
   background: linear-gradient(to right, var(--color-primary), #f4f4f4);
+  background-size: 200% 100%;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
   height: 100vh;
   margin: 0;
+  animation: backgroundAnimation 10s ease-in-out infinite;
 }
 
-.container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+@keyframes backgroundAnimation {
+  0% { background-position: 0% 0%; }
+  50% { background-position: 100% 0%; }
+  100% { background-position: 0% 0%; }
+}
+
+header {
+  background-color: white;
+  width: 100%;
+  padding: 15px 20px;
+  box-shadow: 0 4px 8px var(--shadow-light);
+  text-align: center;
+  animation: slideIn 0.5s ease-out;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  border-bottom: 2px solid var(--color-light);
+}
+
+header h1 {
+  color: var(--color-dark);
+  margin: 0;
+  font-size: 1.8em;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+@keyframes slideIn {
+  from { transform: translateY(-100%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+main.container {
   width: 100%;
   max-width: 80%;
+  margin-top: 80px; /* Ajusta o espaço para o cabeçalho fixo */
+  animation: containerAnimation 1s ease-in-out;
+}
+
+@keyframes containerAnimation {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 .content-wrapper {
@@ -37,21 +80,27 @@ body {
   align-items: flex-start;
   width: 100%;
   max-width: 80%;
+  animation: contentWrapperAnimation 1s ease-in-out;
+}
+
+@keyframes contentWrapperAnimation {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 .content {
   flex: 1;
   text-align: center;
-  box-shadow: 0 2px 4px var(--shadow-light);
+  box-shadow: 0 4px 8px var(--shadow-light);
   padding: 20px;
   border-radius: 30px;
   background-color: white;
-  animation: fadeIn 1s ease-in-out;
+  animation: contentAnimation 1s ease-in-out;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+@keyframes contentAnimation {
+  from { transform: scale(0.95); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
 }
 
 #unique-image {
@@ -60,29 +109,29 @@ body {
   margin-left: 20px;
   transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
   box-shadow: 0 1px 2px var(--shadow-light);
+  animation: imageAnimation 1s ease-in-out;
 }
 
-h1 {
-  color: var(--color-dark);
-  margin-top: 20px;
-  animation: slideIn 0.5s ease-out;
-}
-
-@keyframes slideIn {
-  from { transform: translateY(-20px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
+@keyframes imageAnimation {
+  from { transform: scale(0.95); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
 }
 
 textarea {
   width: 100%;
-  height: 100px;
   margin: 10px 0;
   padding: 20px;
-  border: 1px solid var(--color-light);
+  border: 1px solid var(--color-border);
   border-radius: 4px;
   resize: none;
   box-shadow: 0 1px 2px var(--shadow-light);
   transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+  animation: textareaAnimation 1s ease-in-out;
+}
+
+@keyframes textareaAnimation {
+  from { transform: scale(0.95); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
 }
 
 textarea:focus {
@@ -93,56 +142,75 @@ textarea:focus {
 
 button {
   padding: 10px 20px;
-  border: none;
+  border: 1px solid var(--color-border);
   border-radius: 40px;
   color: white;
   cursor: pointer;
   transition: background-color 0.3s, box-shadow 0.3s, transform 0.3s;
   box-shadow: 0 1px 2px var(--shadow-light);
+  animation: buttonAnimation 0.5s ease-in-out;
+}
+
+@keyframes buttonAnimation {
+  from { transform: scale(0.95); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
 }
 
 #encrypt-btn {
   background-color: var(--color-primary);
-  border: 1px solid var(--color-dark);
-  border-radius: 40px;
+  border-color: var(--color-border);
 }
 
 #encrypt-btn:hover {
   background-color: #e0c757;
-  box-shadow: 0 2px 4px var(--shadow-dark);
-  transform: translateY(-2px);
+  transform: translateY(-3px);
 }
 
 #copy-btn {
   background-color: var(--color-primary);
-  border: 1px solid var(--color-dark);
-  border-radius: 40px;
+  border-color: var(--color-border);
 }
 
 #copy-btn:hover {
   background-color: #e0c757;
-  box-shadow: 0 2px 4px var(--shadow-dark);
-  transform: translateY(-2px);
+  transform: translateY(-3px);
 }
 
 #decrypt-btn {
   background-color: var(--color-secondary);
-  border: 1px solid var(--color-dark);
-  border-radius: 40px;
+  border-color: var(--color-border);
 }
 
 #decrypt-btn:hover {
   background-color: #5a6268;
-  box-shadow: 0 2px 4px var(--shadow-dark);
-  transform: translateY(-2px);
+  transform: translateY(-3px);
 }
 
 #output-text {
   margin-top: 20px;
 }
 
-/* Media Queries for Responsiveness */
+footer {
+  background-color: var(--footer-bg);
+  padding: 15px;
+  text-align: center;
+  border-top: 1px solid var(--color-light);
+  box-shadow: 0 -2px 4px var(--shadow-light);
+  animation: fadeIn 0.5s ease-in-out;
+}
 
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+footer p {
+  color: var(--footer-text);
+  margin: 0;
+  font-size: 0.9em;
+}
+
+/* Media Queries for Responsiveness */
 @media (max-width: 1200px) {
   .container {
     max-width: 90%;
@@ -155,7 +223,7 @@ button {
 
   #unique-image {
     width: 50%;
-    margin-left: 0;
+    margin-top: 0.5rem;
   }
 }
 
@@ -166,29 +234,28 @@ button {
 
   #unique-image {
     width: 70%;
-    margin-top: 1rem;
   }
 
   textarea {
     height: 80px;
   }
-
-  button {
-    padding: 8px 16px;
-  }
 }
 
 @media (max-width: 480px) {
+  .content {
+    margin-top: 10px;
+  }
+
   #unique-image {
     width: 80%;
+    margin-top: 0.5rem;
+  }
+
+  #decrypt-btn {
+    margin-top: 30px;
   }
 
   textarea {
     height: 60px;
-  }
-
-  button {
-    padding: 6px 12px;
-    font-size: 14px;
   }
 }
